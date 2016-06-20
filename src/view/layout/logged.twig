@@ -8,18 +8,18 @@
 {% endblock %}
 
 {% block style %}
-  <link rel="stylesheet" href="assets/bootstrap-material-design/bootstrap-material-design.min.css">
-  <link rel="stylesheet" href="vendor/bootstrap-material-design/dist/css/ripples.min.css">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="{{ path('file', {type: 'assets', file: 'bootstrap-material-design/bootstrap-material-design.min.css'}) }}">
+  <link rel="stylesheet" href="{{ path('file', {type: 'vendor', file: 'bootstrap-material-design/dist/css/ripples.min.css'}) }}">
+  <link rel="stylesheet" href="{{ path('file', {type: 'assets', file: 'style.css'}) }}">
 {% endblock %}
 
 {% block script %}
-  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="vendor/bootstrap-material-design/dist/js/material.min.js"></script>
-  <script src="vendor/bootstrap-material-design/dist/js/ripples.min.js"></script>
+  <script src="{{ path('file', {type: 'vendor', file: 'bootstrap/dist/js/bootstrap.min.js'}) }}"></script>
+  <script src="{{ path('file', {type: 'vendor', file: 'bootstrap-material-design/dist/js/material.min.js'}) }}"></script>
+  <script src="{{ path('file', {type: 'vendor', file: 'bootstrap-material-design/dist/js/ripples.min.js'}) }}"></script>
   <script>
-    $(function() {
+    (function($) {
       $.material.init();
-    });
+    })(jQuery);
   </script>
 {% endblock %}

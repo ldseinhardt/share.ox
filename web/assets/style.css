@@ -1,6 +1,11 @@
 body {
   margin-top: 80px;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  color: #404040;
+}
+
+.orange {
+  color: #ff9933;
 }
 
 .navbar {
@@ -61,16 +66,18 @@ body {
    color: white;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-   color: white;  
+/* Firefox 18- */
+:-moz-placeholder {
+   color: white;
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
-   color: white;  
+/* Firefox 19+ */
+::-moz-placeholder {
+   color: white;
 }
 
-:-ms-input-placeholder {  
-   color: white;  
+:-ms-input-placeholder {
+   color: white;
 }
 
 .panel-title {

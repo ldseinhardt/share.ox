@@ -8,13 +8,13 @@
       <div class="panel-heading">
         <h1 class="panel-title" style="font-size: 16pt">
           {% if search|length %}
-            <img src="files/images/icon-search.png">
+            <img src="{{ path('file', {file: 'images/icon-search.png'}) }}">
             Resultados para: “{{ search }}”
           {% elseif label|length %}
-            <img src="files/images/icon-search.png">
+            <img src="{{ path('file', {file: 'images/icon-search.png'}) }}">
             Resultados para: “{{ label }}”
           {% else %}
-            <img src="files/images/icon-share.png">
+            <img src="{{ path('file', {file: 'images/icon-share.png'}) }}">
             Conteúdos
           {% endif %}
         </h1>
@@ -40,16 +40,16 @@
             <option value="2"{% if sortby == 2 %} selected{% endif %}>data</option>
           </select>
         </div>
-        {% for doc in documents %}
+        {% for document in documents %}
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <a href="{{ path('doc_view', {id: doc.id}) }}">
-              <div class="document" style="background: {% if doc.image %}url(files/uploads/{{ doc.image }}) center/cover{% else %}url(files/images/logo-orange.png) center top 100px{% endif %} no-repeat">
+            <a href="{{ path('doc_view', {id: document.id}) }}">
+              <div class="document" style="background: {% if document.image %}url(/files/uploads/{{ document.image }}) center/cover{% else %}url(/files/images/logo-orange.png) center top 100px{% endif %} no-repeat">
                 <div class="text">
-                  “{{ doc.title }}”
-                  {% if doc.author %}<br>por {{ doc.author }}{% endif %}
-                  {% if doc.type_id == 1 %}<br>Cópia disponível para doação{% endif %}
-                  {% if doc.type_id == 2 %}<br>Livro disponível para doação{% endif %}
-                  {% if doc.type_id == 3 %}<br>Resumo/Anotação disponível para doação{% endif %}
+                  “{{ document.title }}”
+                  {% if document.author %}<br>por {{ document.author }}{% endif %}
+                  {% if document.type_id == 1 %}<br>Cópia disponível para doação{% endif %}
+                  {% if document.type_id == 2 %}<br>Livro disponível para doação{% endif %}
+                  {% if document.type_id == 3 %}<br>Resumo/Anotação disponível para doação{% endif %}
                 </div>
               </div>
             </a>
@@ -63,17 +63,17 @@
     <section class="panel panel-primary">
       <div class="panel-body">
         {% if search|length %}
-          <h3 style="color: #ff9933">Resultados para a pesquisa “{{ search }}”</h3>
+          <h3 class="orange">Resultados para a pesquisa “{{ search }}”</h3>
           <br>
-          <h2 style="color: #404040">Oops!</h2>
+          <h2>Oops!</h2>
           <br>
-          <h2 style="color: #404040">Não encontramos resultados para “{{ search }}” :(</h2>
-          <h2 style="color: #404040">Por favor, tente novamente.</h2>
+          <h2 style="">Não encontramos resultados para “{{ search }}” :(</h2>
+          <h2>Por favor, tente novamente.</h2>
         {% else %}
-          <h2 style="color: #404040">Oops!</h2>
+          <h2>Oops!</h2>
           <br>
-          <h2 style="color: #404040">Nenhum conteúdo cadastrado :(</h2>
-          <h2 style="color: #404040">Que tal, realizar a sua doação?</h2>
+          <h2>Nenhum conteúdo cadastrado :(</h2>
+          <h2>Que tal, realizar a sua doação?</h2>
         {% endif %}
         <br>
         <br>
@@ -149,7 +149,7 @@
   {{ parent() }}
 
   <script>
-    $(function() {
+    (function($) {
       $('select').change(function() {
         var search = [
           'q=' + $('input[name=q]').val(),
@@ -162,7 +162,7 @@
         }
         window.location.search = '?' + search.join('&');
       });
-    });
+    })(jQuery);
   </script>
 
 {% endblock %}

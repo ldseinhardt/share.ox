@@ -5,7 +5,7 @@
   <section class="panel panel-primary">
     <div class="panel-heading">
       <h1 class="panel-title" style="font-size: 16pt">
-        <img src="files/images/icon-share.png">Editar documento
+        <img src="{{ path('file', {file: 'images/icon-share.png'}) }}">Editar documento
       </h1>
     </div>
     <div class="panel-body">
@@ -15,14 +15,14 @@
       <form class="form-horizontal" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-          <label for="title" class="col-sm-3">Título <span style="color: #ff9933">*</span>:</label>
+          <label for="title" class="col-sm-3">Título <span class="orange">*</span>:</label>
           <div class="col-sm-9">
             <input type="text" id="title" name="title" maxlength="128" value="{{ document.title }}" required autofucus>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="type_id" class="col-sm-3">Tipo de documento <span style="color: #ff9933">*</span>:</label>
+          <label for="type_id" class="col-sm-3">Tipo de documento <span class="orange">*</span>:</label>
           <div class="col-sm-9">
             <input type="radio" id="type_id" name="type_id" value="1"{% if document.type_id == 1 %} checked{% endif %}> cópia
             <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> livro
@@ -91,7 +91,7 @@
 
         <div class="form-group">
           <div class="col-sm-11 col-sm-offset-1">
-            <h4 style="color: #ff9933">* O preenchimento das informações é obrigatório</h4>
+            <h4 class="orange">* O preenchimento das informações é obrigatório</h4>
             <button class="btn btn-raised btn-primary">Salvar</button>
           </div>
         </div>
@@ -155,7 +155,7 @@
   {{ parent() }}
 
   <script>
-    $(function() {
+    (function($) {
       $('input[name=type_id]').change(function(evt) {
         var other = $('#type_other');
         if ($(evt.target).val() == 4) {
@@ -192,7 +192,7 @@
           }
         }
       });
-    });
+    })(jQuery);
   </script>
 
 {% endblock %}

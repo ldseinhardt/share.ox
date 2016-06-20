@@ -5,11 +5,14 @@
   <section class="panel panel-primary">
     <div class="panel-heading">
       <h1 class="panel-title" style="font-size: 16pt">
-        <img src="files/images/icon-share.png">Biblioteca de Fulano
+        <img src="{{ path('file', {file: 'images/icon-share.png'}) }}">Biblioteca de {{ user.first_name }}
       </h1>
     </div>
     <div class="panel-body">
       <h4>Página em desenvolvimento ...</h4>
+      <div>{{ user.first_name }} {{ user.last_name }}</div>
+      <div><img src="{{ user.picture }}" class="img-circle"></div>
+      <div><a href="https://facebook.com/{{ user.id }}" target="_blank">Converse com {{ user.first_name }} no Facebook</a></div>
     </div>
   </section>
 

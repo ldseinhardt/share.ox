@@ -11,7 +11,7 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <form class="navbar-form navbar-left" method="GET" action="{{ path('search') }}">
         <div class="form-group">
-          <input type="text" name="q" class="input-search" placeholder="Pesquisar ..."{% if search is defined %} value="{{ search }}"{% endif %}>
+          <input type="text" name="q" class="input-search" placeholder="Pesquisar ..."{% if search is defined and search %} value="{{ search }}"{% endif %}>
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">

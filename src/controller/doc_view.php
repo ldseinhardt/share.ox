@@ -4,16 +4,7 @@
   $app->get('/doc/{id}/', function($id) use($app, $userLogged) {
     $document = $app['db']->fetchAssoc("
       SELECT
-        documents.id,
-        documents.title,
-        documents.description,
-        documents.image,
-        documents.author,
-        documents.publisher,
-        documents.type_id,
-        documents.status_id,
-        documents.year,
-        documents.user_id,
+        documents.*,
         users.first_name AS user_first_name,
         users.last_name AS user_last_name,
         users.picture AS user_picture

@@ -5,29 +5,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}share.ox{% endblock %}</title>
-    <base href="/">
-    <link rel="icon" type="image/png" href="files/images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ path('file', {file: 'images/favicon.png'}) }}">
     <meta name="theme-color" content="#ff9933">
     {% block facebook %}
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="share.ox">
-    <meta property="og:url" content="{{ url('login') }}">
+    <meta property="og:url" content="{{ url('home') }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="share.ox">
     <meta property="og:description" content="share.ox é um novo conceito de compartilhamento, doação e troca de cópias.">
-    <meta property="og:image" content="{{ url('file', {type: 'files', file: 'images/bg-home.png'}) }}">
+    <meta property="og:image" content="{{ url('file', {file: 'images/bg-home.png'}) }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="640">
     <meta property="og:image:height" content="426">
     {% endblock %}
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ path('file', {type: 'vendor', file: 'bootstrap/dist/css/bootstrap.min.css'}) }}">
+    <link rel="stylesheet" href="{{ path('file', {type: 'vendor', file: 'font-awesome/css/font-awesome.min.css'}) }}">
     {% block style %}{% endblock %}
   </head>
   <body>
     {% block content %}{% endblock %}
-    <script src="vendor/jquery/dist/jquery.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="{{ path('file', {type: 'vendor', file: 'jquery/dist/jquery.min.js'}) }}"></script>
+    <script src="{{ path('file', {type: 'assets', file: 'script.js'}) }}"></script>
     {% block script %}{% endblock %}
   </body>
 </html>

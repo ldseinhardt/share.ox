@@ -5,11 +5,11 @@
   <section class="panel panel-primary">
     <div class="panel-heading">
       <h1 class="panel-title" style="font-size: 16pt">
-        <img src="files/images/icon-share.png">Documento
+        <img src="{{ path('file', {file: 'images/icon-share.png'}) }}">Documento
       </h1>
     </div>
     <div class="panel-body">
-      <h4 style="color: #ff9933">
+      <h4 class="orange">
         Você está em:
         {% if document.type_id == 1 %}
           Cópias
@@ -50,7 +50,7 @@
             <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
             <h4>Documento de {{ document.user_first_name }} {{ document.user_last_name }}</h4>
             <br>
-            <h4 style="color: #ff9933">
+            <h4 class="orange">
               {% if userLogged and document.user_id == userLogged.id %}
                 <a href="{{ path('my_profile') }}">Ver a minha biblioteca</a>
               {% else %}
@@ -63,7 +63,7 @@
           </div>
           <div class="row">
             <div class="col-xs-offset-1">
-              <h4 style="color: #ff9933">Informações do documento</h4>
+              <h4 class="orange">Informações do documento</h4>
               {% if document.author %}<h4>Autor(a): {{ document.author }}</h4>{% endif %}
               {% if document.publisher %}<h4>Editora: {{ document.publisher }}</h4>{% endif %}
               {% if document.year %}<h4>Ano de publicação: {{ document.year }}</h4>{% endif %}
@@ -88,14 +88,14 @@
             {% else %}
               <a href="https://facebook.com/{{ document.user_id }}" target="_blank" style="color: white; text-decoration: none;">
                 <div class="btn-action withripple">
-                  <img src="files/images/icon-messenger.png" style="margin-right: 10px">Eu quero!
+                  <img src="{{ path('file', {file: 'images/icon-messenger.png'}) }}" style="margin-right: 10px">Eu quero!
                 </div>
               </a>
             {% endif %}
           </div>
         </div>
         <div class="col-sm-5 col-md-4 col-lg-4">
-          <div class="document" style="background: {% if document.image %}url(files/uploads/{{ document.image }}) center/cover{% else %}url(files/images/logo-orange.png) center{% endif %} no-repeat"></div>
+          <div class="document" style="background: {% if document.image %}url(/files/uploads/{{ document.image }}) center/cover{% else %}url(/files/images/logo-orange.png) center{% endif %} no-repeat"></div>
         </div>
       </div>
       <hr style="width: 90%">
@@ -109,12 +109,34 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="share.ox">
   <meta property="og:url" content="{{ url('doc_view', {id: document.id}) }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:title" content="{{ document.title }}">
   <meta property="og:description" content="{{ document.description }}">
-  {% if document.image %}
-  <meta property="og:image" content="{{ url('file', {type: 'files', file: 'uploads/' ~ document.image }) }}">
+  <meta property="article:author" content="{{ document.user_id }}">
+  {% if document.type_id == 1 %}
+    <meta property="article:section" content="Doação de cópias">
   {% endif %}
+  {% if document.type_id == 2 %}
+    <meta property="article:section" content="Doação de livros">
+  {% endif %}
+  {% if document.type_id == 3 %}
+    <meta property="article:section" content="Doação de resumos e anotações">
+  {% endif %}
+  {% if document.type_id >= 4 %}
+    <meta property="article:section" content="Doação de outros">
+  {% endif %}
+  {% if document.categories|length %}
+    {% set categories = [] %}
+    {% for category in document.categories %}
+        {% set categories = categories|merge([category.name]) %}
+    {% endfor %}
+    <meta property="article:tag" content="{{ categories|join(', ') }}">
+  {% endif %}
+  <meta property="article:published_time" content="{{ document.created }}">
+  {% if document.image %}
+    <meta property="og:image" content="{{ url('file', {type: 'files', file: 'uploads/' ~ document.image }) }}">
+  {% endif %}
+
 {% endblock %}
 
 {% block style %}
@@ -164,14 +186,16 @@
   {{ parent() }}
 
   <script>
-    $(window).resize(function() {
-      var document = $('.document');
-      document.height(document.width() * 1.5);
-    });
+    (function($) {
+      $(window).resize(function() {
+        var document = $('.document');
+        document.height(document.width() * 1.5);
+      });
 
-    $(function() {
-      $(window).trigger('resize');
-    });
+      $(function() {
+        $(window).trigger('resize');
+      });
+    })(jQuery);
   </script>
 
 {% endblock %}
