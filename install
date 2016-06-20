@@ -1,0 +1,8 @@
+#!/bin/bash
+
+composer install
+bower install
+
+mkdir -p temp/cache/http_cache
+mkdir -p temp/cache/twig
+mkdir -p web/uploads

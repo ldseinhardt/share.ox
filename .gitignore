@@ -1,0 +1,8 @@
+bin
+vendor
+bower_components
+temp
+web/uploads
+c9
+composer.lock
+*~

@@ -1,0 +1,83 @@
+body {
+  margin-top: 80px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  color: white !important;
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+}
+
+.navbar img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar a.menu-profile:before {
+    content: "";
+    display: block;
+    background: transparent url(/files/images/icon-profile.png) center/25px no-repeat;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 6px 0 0;
+}
+
+.navbar a.menu-notifications:before {
+    content: "";
+    display: block;
+    background: transparent url(/files/images/icon-notifications.png) center/25px no-repeat;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 6px 0 0;
+}
+
+.navbar a.menu-share:before {
+    content: "";
+    display: block;
+    background: transparent url(/files/images/icon-share-orange.png) center/25px no-repeat;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 6px 0 0;
+}
+
+.input-search {
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  padding: 5px 10px;
+  padding-right: 50px;
+  width: 300px;
+  background: transparent url(/files/images/icon-search.png) center right 10px/25px no-repeat;
+}
+
+::-webkit-input-placeholder {
+   color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+}
+
+.panel-title {
+  color: white;
+  margin-top: 12px;
+}
+
+.panel-title img {
+  margin-right: 10px;
+}

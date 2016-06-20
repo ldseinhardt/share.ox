@@ -1,0 +1,25 @@
+{% extends "layout/base.twig" %}
+
+{% block content %}
+  {% include 'layout/navbar.twig' %}
+  <div class="container">
+    {% block page %}{% endblock %}
+  </div>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="assets/bootstrap-material-design/bootstrap-material-design.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-material-design/dist/css/ripples.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+{% endblock %}
+
+{% block script %}
+  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="vendor/bootstrap-material-design/dist/js/material.min.js"></script>
+  <script src="vendor/bootstrap-material-design/dist/js/ripples.min.js"></script>
+  <script>
+    $(function() {
+      $.material.init();
+    });
+  </script>
+{% endblock %}

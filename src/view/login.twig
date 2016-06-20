@@ -1,0 +1,143 @@
+{% extends "layout/base.twig" %}
+
+{% block content %}
+
+  <section id="home">
+    <div class="container-fluid" style="display: none">
+      <div class="row">
+        <img class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" src="files/images/logo.png">
+      </div>
+      <div class="row" style="margin-top: 30px">
+        <a href="javascript: void(0);" id="facebook-login"><i class="fa fa-facebook" style="margin-right: 15px" aria-hidden="true"></i>Login com facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="details">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h1 style="color: #ff9933">share.ox é um novo conceito de compartilhamento, doação e troca de cópias.</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">Desenvolvido por estudantes, para estudantes.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+          <div class="row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <img src="files/images/icon-page.png">
+              <h3 style="color: #404040">Tirou cópias, já as utilizou e não tem mais o que fazer com elas?</h3>
+              <h3 style="color: #404040">Quer se livrar desse monte de papel acumulado em casa?</h3>
+            </div>
+            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-1">
+              <img src="files/images/icon-money.png">
+              <h3 style="color: #404040">Precisa de uma cópia específica, mas não tem dinheiro no momento?</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">O share.ox tá aí pra isso!</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">Repasse seu conteúdo, economize tempo, dinheiro, tinta e papel - o meio ambiente agradece (e a sua nota no fim do semestre também) :)</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="details-more">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">share.ox não possui fins lucrativos - a ideia é que todo o material seja doado ou trocado.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">Intermediamos o contato entre quem quer se desfazer e quem busca o conteúdo, tudo via facebook. As negociações ficam por conta dos usuários.</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ol-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+          <h2 style="color: #404040">Estamos sempre abertos a feedback!</h2>
+          <h2 style="color: #404040">Curta nossa página no facebook.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block style %}
+
+  <style>
+    html, body {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      margin: 0;
+      height: 100%;
+      text-align: center;
+    }
+
+    #home {
+      min-height: 100%;
+      background: #ff9933 url(/files/images/bg-home.png) center/cover no-repeat;
+    }
+
+    #logo {
+      width: 100%;
+      height: auto;
+    }
+
+    #facebook-login {
+      font-size: 12pt;
+      padding: 15px;
+      color: white;
+      background: #3b5998;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+
+    #details {
+      padding: 25px 0;
+      background: #e6e6e6;
+    }
+
+    #details-more {
+      padding: 50px 0;
+      background: white;
+    }
+  </style>
+
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    var home = $('#home');
+
+    $(window).resize(function() {
+      if ($(window).height() < ($(window).width() / 3.5)) {
+        $('#home').height(($(window).width() / 3.5) * 1.2);
+      }
+      var pt = ($(window).height() - ($(window).width() / 3.5)) * 0.4;
+      $('.container-fluid', home).css('padding-top', pt);
+    });
+
+    $(window).trigger('resize');
+
+    $(window).ready(function() {
+      setTimeout(function() {
+        $('.container-fluid', home).fadeIn();
+      }, 500);
+    });
+  </script>
+
+{% endblock %}

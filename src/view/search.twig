@@ -1,0 +1,170 @@
+{% extends "layout/logged.twig" %}
+
+{% block page %}
+
+  {% if documents|length %}
+  
+    <section class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title" style="font-size: 16pt">
+          {% if search|length %}
+            <img src="files/images/icon-search.png">
+            Resultados para: “{{ search }}”
+          {% elseif label|length %}
+            <img src="files/images/icon-search.png">
+            Resultados para: “{{ label }}”
+          {% else %}
+            <img src="files/images/icon-share.png">
+            Conteúdos
+          {% endif %}
+        </h1>
+      </div>
+      <div class="panel-body">
+        <div class="row filters">
+          Filtrar por: 
+          <select name="type">
+            <option value="">tipo de documento</option>
+            <option value="1"{% if type == 1 %} selected{% endif %}>cópias</option>
+            <option value="2"{% if type == 2 %} selected{% endif %}>livros</option>
+            <option value="3"{% if type == 3 %} selected{% endif %}>resumos e anotações</option>
+            <option value="4"{% if type == 4 %} selected{% endif %}>outros</option>
+          </select>
+          <select name="status">
+            <option value="">estado de conservação</option>
+            <option value="1"{% if status == 1 %} selected{% endif %}>novo</option>
+            <option value="2"{% if status == 2 %} selected{% endif %}>usado</option>
+          </select>
+          Ordenar por: 
+          <select name="sortby">
+            <option value="1"{% if sortby == 1 %} selected{% endif %}>título</option>
+            <option value="2"{% if sortby == 2 %} selected{% endif %}>data</option>
+          </select>
+        </div>
+        {% for doc in documents %}
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('doc_view', {id: doc.id}) }}">
+              <div class="document" style="background: {% if doc.image %}url(files/uploads/{{ doc.image }}) center/cover{% else %}url(files/images/logo-orange.png) center top 100px{% endif %} no-repeat">
+                <div class="text">
+                  “{{ doc.title }}”
+                  {% if doc.author %}<br>por {{ doc.author }}{% endif %}
+                  {% if doc.type_id == 1 %}<br>Cópia disponível para doação{% endif %}
+                  {% if doc.type_id == 2 %}<br>Livro disponível para doação{% endif %}
+                  {% if doc.type_id == 3 %}<br>Resumo/Anotação disponível para doação{% endif %}
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  {% else %}
+
+    <section class="panel panel-primary">
+      <div class="panel-body">
+        {% if search|length %}
+          <h3 style="color: #ff9933">Resultados para a pesquisa “{{ search }}”</h3>
+          <br>
+          <h2 style="color: #404040">Oops!</h2>
+          <br>
+          <h2 style="color: #404040">Não encontramos resultados para “{{ search }}” :(</h2>
+          <h2 style="color: #404040">Por favor, tente novamente.</h2>
+        {% else %}
+          <h2 style="color: #404040">Oops!</h2>
+          <br>
+          <h2 style="color: #404040">Nenhum conteúdo cadastrado :(</h2>
+          <h2 style="color: #404040">Que tal, realizar a sua doação?</h2>
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </section>
+  
+  {% endif %}
+
+{% endblock %}
+
+
+{% block style %}
+
+  {{ parent() }}
+
+  <style>
+    select {
+      background: transparent;
+      border: 2px solid #ff9933;
+      color: #ff9933;
+      margin: 5px;
+    }
+
+    select > option {
+      background: white;
+      color: #ff9933;
+    }
+    
+    .document {
+      color: #ff9933;
+      text-align: center;
+      margin: 10px auto;
+      height: 350px;
+      border: 2px solid #ff9933;
+      position: relative;
+      width: 100%; 
+    }
+
+    .document .text {
+      background: rgba(255, 153, 51, .8);
+      color: white;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 30%;
+    }
+
+    .filters {
+      color: #ff9933;
+      font-size: 14pt;
+      text-align: right;
+      margin: 10px 15px;
+      margin-right: 25px;
+    }
+    
+    @media(max-width: 1200px) {
+      select {
+        width: 100%;
+      }
+
+      .filters {
+        text-align: left;
+      }
+    }
+  </style>
+
+{% endblock %}
+
+
+{% block script %}
+
+  {{ parent() }}
+
+  <script>
+    $(function() {
+      $('select').change(function() {
+        var search = [
+          'q=' + $('input[name=q]').val(),
+          'type=' + $('select[name=type] option:selected').val(),
+          'status=' + $('select[name=status] option:selected').val(),
+          'sortby=' + $('select[name=sortby] option:selected').val()
+        ]
+        if ($('select[name=type] option:selected').val()) {
+          search.push('label=' + $('select[name=type] option:selected').text());
+        }
+        window.location.search = '?' + search.join('&');
+      });
+    });
+  </script>
+
+{% endblock %}

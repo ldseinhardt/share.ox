@@ -1,0 +1,196 @@
+{% extends "layout/logged.twig" %}
+
+{% block page %}
+
+  <section class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 class="panel-title" style="font-size: 16pt"><img src="files/images/icon-share.png">Compartilhar um novo documento</h1>
+    </div>
+    <div class="panel-body">
+      {% if response %}
+        <div style="text-align: center; font-size: 14pt; color: #ff9933">{{ response }}</div>
+      {% endif %}
+      <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="title" class="col-sm-3">Título <span style="color: #ff9933">*</span>:</label>
+          <div class="col-sm-9">
+            <input type="text" id="title" name="title" maxlength="128" value="{{ document.title }}" required autofucus>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="type_id" class="col-sm-3">Tipo de documento <span style="color: #ff9933">*</span>:</label>
+          <div class="col-sm-9">
+            <input type="radio" id="type_id" name="type_id" value="1"{% if document.type_id == 1 %} checked{% endif %}> cópia
+            <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> livro
+            <input type="radio" id="type_id" name="type_id" value="3"{% if document.type_id == 3 %} checked{% endif %}> resumo/anotação
+            <input type="radio" id="type_id" name="type_id" value="4"{% if document.type_id >= 4 %} checked{% endif %}> outro:
+            <input type="text" id="type_other" name="type_other" value="{{ type_other }}" maxlength="32" style="width: 150px; display: none">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="author" class="col-sm-3">Autor:</label>
+          <div class="col-sm-9">
+            <input type="text" id="author" name="author" value="{{ document.author }}" maxlength="64">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status_id" class="col-sm-3">Estado de conservação:</label>
+          <div class="col-sm-9">
+            <input type="radio" id="status_id" name="status_id" value="1"{% if document.status_id == 1 %} checked{% endif %}> novo
+            <input type="radio" id="status_id" name="status_id" value="2"{% if document.status_id == 2 %} checked{% endif %}> usado
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="year" class="col-sm-3">Ano de publicação:</label>
+          <div class="col-sm-9">
+            <input type="number" id="year" name="year" value="{{ document.year }}" min="1901" max="2017">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="publisher" class="col-sm-3">Editora:</label>
+          <div class="col-sm-9">
+            <input type="text" id="publisher" name="publisher" value="{{ document.publisher }}" maxlength="64">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-md-8 col-lg-9">
+
+            <div class="form-group">
+              <label for="categories" class="col-sm-4">Outros:</label>
+              <div class="col-sm-8">
+                <input type="checkbox" id="categories" name="categories[]" value="1"{% if 1 in categories %} checked{% endif %}> grifado
+                <input type="checkbox" id="categories" name="categories[]" value="2"{% if 2 in categories %} checked{% endif %}> com anotações
+                <input type="checkbox" id="categories" name="categories[]" value="3"{% if 3 in categories %} checked{% endif %}> dobras/amassado/orelhas
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="col-sm-4">Informações adicionais:</label>
+              <div class="col-sm-11 col-sm-offset-1">
+                <textarea name="description" id="description" maxlength="512">{{ document.description }}</textarea>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div id="upload" class="document" style="background: url(files/images/logo-orange.png) center top 150px no-repeat">
+              Enviar imagem
+            </div>
+            <input type="file" name="image" accept="image/*" style="display: none">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-11 col-sm-offset-1">
+            <h4 style="color: #ff9933">* O preenchimento das informações é obrigatório</h4>
+            <button class="btn btn-raised btn-primary">Enviar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+{% block style %}
+
+  {{ parent() }}
+
+  <style>
+    label {
+      font-size: 14pt;
+      color: #404040 !important;
+    }
+
+    section [type=text], section [type=number] {
+      border-radius: 15px;
+      width: 100%;
+      border: 1px solid #404040;
+      padding: 0 10px;
+    }
+
+    section [type=radio] {
+      border: 1px solid #404040;
+      border-radius: 15px;
+      background: transparent;
+    }
+
+    section textarea {
+      width: 100%;
+      height: 240px;
+      border: 1px solid #404040;
+      border-radius: 15px;
+      background: transparent;
+      padding: 10px;
+    }
+
+    .document {
+      color: #ff9933;
+      text-align: center;
+      margin: 10px auto;
+      height: 350px;
+      border: 2px solid #ff9933;
+      padding: 75px 25px;
+      font-size: 14pt;
+      cursor: pointer;
+    }
+  </style>
+
+{% endblock %}
+
+
+{% block script %}
+
+  {{ parent() }}
+
+  <script>
+    $(function() {
+      $('input[name=type_id]').change(function(evt) {
+        var other = $('#type_other');
+        if ($(evt.target).val() == 4) {
+          other.fadeIn();
+          other.attr('required', 'true');
+        } else {
+          other.hide();
+          other.removeAttr('required');
+        }
+      });
+
+      $('#upload').click(function() {
+        $(':file').click();
+      });
+
+      $(':file').change(function() {
+        if (this.files && this.files[0]) {
+          file = this.files[0];
+          var images = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
+          if (images.indexOf(file.type) == -1) {
+            alert('Imagem inválida, o formato deve ser jpg, png ou gif.');
+          } else if (file.size > 1024 * 1024 * 1) {
+            alert('Imagem inválida, tamanho máximo 1MB.');
+          } else {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              $('#upload').css({
+                background: 'transparent url(' + e.target.result + ') center/cover no-repeat',
+                padding: 0
+              });
+              $('#upload').html('<div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(files/images/logo-orange.png) center top 150px no-repeat">Editar imagem</div>');
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

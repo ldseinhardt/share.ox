@@ -1,0 +1,9 @@
+{
+  "name": "shareox",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3",
+    "font-awesome": "^4.6.2",
+    "bootstrap-material-design": "^0.5.9"
+  }
+}

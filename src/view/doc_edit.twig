@@ -1,0 +1,174 @@
+{% extends "layout/logged.twig" %}
+
+{% block page %}
+
+  <section class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 class="panel-title" style="font-size: 16pt">
+        <img src="files/images/icon-share.png">Editar documento
+      </h1>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        
+        <div class="form-group">
+          <label for="title" class="col-sm-3">Título <span style="color: #ff9933">*</span>:</label>
+          <div class="col-sm-9">
+            <input type="text" id="title" name="title" maxlength="128" required autofucus>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="type" class="col-sm-3">Tipo de documento <span style="color: #ff9933">*</span>:</label>
+          <div class="col-sm-9">
+            <input type="radio" id="type" name="type" value="1"> cópia
+            <input type="radio" id="type" name="type" value="2"> livro
+            <input type="radio" id="type" name="type" value="3"> resumo/anotação
+            <input type="radio" id="type" name="type" value="4"> outro:
+            <input type="text" id="type_other" name="type_other" maxlength="32" style="width: 150px; display: none">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="author" class="col-sm-3">Autor:</label>
+          <div class="col-sm-9">
+            <input type="text" id="author" name="author" maxlength="64">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="status" class="col-sm-3">Estado de conservação:</label>
+          <div class="col-sm-9">
+            <input type="radio" id="status" name="status" value="1"> novo
+            <input type="radio" id="status" name="status" value="2"> usado
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="year" class="col-sm-3">Ano de publicação:</label>
+          <div class="col-sm-9">
+            <input type="number" id="year" name="year" min="1901" max="2017">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="publisher" class="col-sm-3">Editora:</label>
+          <div class="col-sm-9">
+            <input type="text" id="publisher" name="publisher" maxlength="64">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6 col-md-8 col-lg-9">
+        
+            <div class="form-group">
+              <label for="others" class="col-sm-4">Outros:</label>
+              <div class="col-sm-8">
+                <input type="checkbox" id="others" name="others" value="1"> grifado
+                <input type="checkbox" id="others" name="others" value="2"> com anotações
+                <input type="checkbox" id="others" name="others" value="3"> dobras/amassado/orelhas
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <label for="others" class="col-sm-4">Informações adicionais:</label>
+              <div class="col-sm-11 col-sm-offset-1">
+                <textarea></textarea>
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <div class="col-sm-11 col-sm-offset-1">
+                <div style="color: #ff9933">* O preenchimento das informações é obrigatório</div>
+                
+                <button class="btn btn-raised btn-primary">Enviar</button>
+              </div>
+            </div>
+          
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="publication" style="background: url(files/images/logo-orange.png) center top 150px no-repeat">
+              Enviar imagem
+            </div>
+          </div>
+        </div>
+
+      </form>
+      <hr style="width: 90%">
+      <div class="fb-comments" data-href="{{ url('doc_view', {id: 1}) }}" data-width="100%" data-numposts="10"></div>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+{% block style %}
+
+  {{ parent() }}
+
+  <style>
+    label {
+      font-size: 14pt;
+      color: #404040 !important;
+    }
+    
+    section form {
+      padding-right: 20px;
+    }
+
+    section [type=text], section [type=number] {
+      border-radius: 15px;
+      width: 100%;
+      border: 1px solid #404040;
+      padding: 0 10px;
+    }
+
+    section [type=radio] {
+      border: 1px solid #404040;
+      border-radius: 15px;
+      background: transparent;
+    }
+
+    section textarea {
+      width: 100%;
+      height: 240px;
+      border: 1px solid #404040;
+      border-radius: 15px;
+      background: transparent;
+      padding: 10px;
+    }
+
+    .publication {
+      color: #ff9933;
+      text-align: center;
+      margin: 10px auto;
+      height: 350px;
+      border: 2px solid #ff9933;
+      padding: 75px 25px;
+      font-size: 14pt;
+    }
+  </style>
+
+{% endblock %}
+
+
+{% block script %}
+
+  {{ parent() }}
+
+  <script>
+    $(function() {
+      $('input[name=type]').change(function(evt) {
+        var other = $('#type_other');
+        if ($(evt.target).val() == 4) {
+          other.fadeIn();
+          other.attr('required', 'true');
+        } else {
+          other.hide();
+          other.removeAttr('required');
+        }
+      });
+    });
+  </script>
+
+{% endblock %}
