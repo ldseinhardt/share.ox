@@ -28,7 +28,7 @@
             <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> livro
             <input type="radio" id="type_id" name="type_id" value="3"{% if document.type_id == 3 %} checked{% endif %}> resumo/anotação
             <input type="radio" id="type_id" name="type_id" value="4"{% if document.type_id >= 4 %} checked{% endif %}> outro:
-            <input type="text" id="type_other" name="type_other" value="{{ type_other }}" maxlength="32" style="width: 150px; display: none">
+            <input type="text" id="type_other" name="type_other" value="{{ type_other }}" maxlength="32" style="width: 150px;{% if document.type_id < 4 %} display: none{% endif %}">
           </div>
         </div>
 
@@ -92,13 +92,13 @@
         <div class="form-group">
           <div class="col-sm-11 col-sm-offset-1">
             <h4 style="color: #ff9933">* O preenchimento das informações é obrigatório</h4>
-            <button class="btn btn-raised btn-primary">Enviar</button>
+            <button class="btn btn-raised btn-primary">Salvar</button>
           </div>
         </div>
 
       </form>
       <hr style="width: 90%">
-      <div class="fb-comments" data-href="{{ url('doc_view', {id: 1}) }}" data-width="100%" data-numposts="10"></div>
+      <div class="fb-comments" data-href="{{ url('doc_view', {id: document.id}) }}" data-width="100%" data-numposts="10"></div>
     </div>
   </section>
 

@@ -28,7 +28,7 @@
             <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> livro
             <input type="radio" id="type_id" name="type_id" value="3"{% if document.type_id == 3 %} checked{% endif %}> resumo/anotação
             <input type="radio" id="type_id" name="type_id" value="4"{% if document.type_id >= 4 %} checked{% endif %}> outro:
-            <input type="text" id="type_other" name="type_other" value="{{ type_other }}" maxlength="32" style="width: 150px; display: none">
+            <input type="text" id="type_other" name="type_other" value="{{ type_other }}" maxlength="32" style="width: 150px;{% if document.type_id < 4 %} display: none{% endif %}">
           </div>
         </div>
 
