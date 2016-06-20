@@ -3,7 +3,7 @@
 {% block page %}
 
   {% if documents|length %}
-  
+
     <section class="panel panel-primary">
       <div class="panel-heading">
         <h1 class="panel-title" style="font-size: 16pt">
@@ -21,7 +21,7 @@
       </div>
       <div class="panel-body">
         <div class="row filters">
-          Filtrar por: 
+          Filtrar por:
           <select name="type">
             <option value="">tipo de documento</option>
             <option value="1"{% if type == 1 %} selected{% endif %}>cópias</option>
@@ -34,7 +34,7 @@
             <option value="1"{% if status == 1 %} selected{% endif %}>novo</option>
             <option value="2"{% if status == 2 %} selected{% endif %}>usado</option>
           </select>
-          Ordenar por: 
+          Ordenar por:
           <select name="sortby">
             <option value="1"{% if sortby == 1 %} selected{% endif %}>título</option>
             <option value="2"{% if sortby == 2 %} selected{% endif %}>data</option>
@@ -81,11 +81,10 @@
         <br>
       </div>
     </section>
-  
+
   {% endif %}
 
 {% endblock %}
-
 
 {% block style %}
 
@@ -103,7 +102,7 @@
       background: white;
       color: #ff9933;
     }
-    
+
     .document {
       color: #ff9933;
       text-align: center;
@@ -111,7 +110,7 @@
       height: 350px;
       border: 2px solid #ff9933;
       position: relative;
-      width: 100%; 
+      width: 100%;
     }
 
     .document .text {
@@ -131,7 +130,7 @@
       margin: 10px 15px;
       margin-right: 25px;
     }
-    
+
     @media(max-width: 1200px) {
       select {
         width: 100%;
@@ -144,7 +143,6 @@
   </style>
 
 {% endblock %}
-
 
 {% block script %}
 
