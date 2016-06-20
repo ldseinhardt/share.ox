@@ -5,7 +5,7 @@
     if (!$userLogged) {
       return $app->redirect('/login/');
     }
-    
+
     $document = [
       'title' => $app->escape($request->get('title')),
       'description' => $app->escape($request->get('description')),
@@ -13,13 +13,12 @@
       'author' => $app->escape($request->get('author')),
       'status_id' => $app->escape($request->get('status_id')),
       'year' => $app->escape($request->get('year')),
-      'publisher' => $app->escape($request->get('publisher')),
-      'image' => ''
+      'publisher' => $app->escape($request->get('publisher'))
     ];
 
     $type_other = $app->escape($request->get('type_other'));
     $categories = $request->get('categories');
-    
+
     $response = NULL;
 
     if ($request->isMethod('POST')) {
@@ -42,7 +41,7 @@
         $document['image'] = md5($userLogged->id) . md5(time()) . $format;
         $image->move($path, $document['image']);
       }
-      
+
       if ($document['type_id'] == 4) {
         $query = $app['db']->fetchAssoc("
           SELECT
@@ -57,7 +56,7 @@
           $document['type_id'] = $query['id'];
         } else {
           $app['db']->insert('types', [
-            'type' => $type_other  
+            'type' => $type_other
           ]);
           $document['type_id'] = $app['db']->lastInsertId();
         }
@@ -82,6 +81,12 @@
       }
 
       $response = 'Seu documento foi compartilhado com sucesso!!!';
+
+      $document = array_map(function($e) {
+        return '';
+      }, $document);
+      $type_other = '';
+      $categories = [];
     }
 
     return $app['twig']->render('doc_add.twig', [
