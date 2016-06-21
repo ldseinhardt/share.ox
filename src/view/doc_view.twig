@@ -78,24 +78,31 @@
               {% if document.description %}<h4>Informações adicionais:</h4><p>{{ document.description|nl2br }}</p>{% endif %}
             </div>
           </div>
-          <div class="row">
-            {% if userLogged and document.user_id == userLogged.id %}
-              <a href="{{ path('doc_edit', {id: document.id}) }}" style="color: white; text-decoration: none;">
-                <div class="btn-action withripple">
-                  Editar
-                </div>
-              </a>
-            {% else %}
-              <a href="https://facebook.com/{{ document.user_id }}" target="_blank" style="color: white; text-decoration: none;">
-                <div class="btn-action withripple">
-                  <img src="{{ path('file', {file: 'images/icon-messenger.png'}) }}" style="margin-right: 10px">Eu quero!
-                </div>
-              </a>
-            {% endif %}
-          </div>
         </div>
         <div class="col-sm-5 col-md-4 col-lg-4">
           <div class="document" style="background: {% if document.image %}url(/files/uploads/{{ document.image }}) center/cover{% else %}url(/files/images/logo-orange.png) center{% endif %} no-repeat"></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <div class="col-sm-6 col-md-7 text-center">
+          {% if userLogged and document.user_id == userLogged.id %}
+            <a href="{{ path('doc_edit', {id: document.id}) }}" style="color: white; text-decoration: none;">
+              <div class="btn-action withripple">
+                Editar
+              </div>
+            </a>
+            <a href="javascript: if (confirm('Você tem certeza que quer remover este documento?')) { window.location.href = '{{ path('doc_delete', {id: document.id}) }}';}" style="color: white; text-decoration: none;">
+              <div class="btn-action withripple">
+                Remover
+              </div>
+            </a>
+          {% else %}
+            <a href="https://facebook.com/{{ document.user_id }}" target="_blank" style="color: white; text-decoration: none;">
+              <div class="btn-action withripple">
+                <img src="{{ path('file', {file: 'images/icon-messenger.png'}) }}" style="margin-right: 10px">Eu quero!
+              </div>
+            </a>
+          {% endif %}
         </div>
       </div>
       <hr style="width: 90%">
@@ -161,21 +168,14 @@
     }
 
     .btn-action {
-      width: 50%;
-      margin: 0 auto;
-      padding: 25px 20px;
+      display: inline;
+      margin: 10px;
+      padding: 20px 25px;
       text-align: center;
       border-radius: 25px;
       background-color: #ff9933;
       color: white;
       font-size: 24pt;
-    }
-
-    @media(max-width: 550px) {
-      .btn-action {
-        width: 80%;
-        margin: 0 auto;
-      }
     }
   </style>
 

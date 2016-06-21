@@ -51,7 +51,6 @@
           WHERE
             type = ?
         ", [$type_other]);
-
         if ($query && $query['id']) {
           $document['type_id'] = $query['id'];
         } else {

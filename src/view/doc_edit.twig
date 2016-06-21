@@ -9,9 +9,6 @@
       </h1>
     </div>
     <div class="panel-body">
-      {% if response %}
-        <div style="text-align: center; font-size: 14pt; color: #ff9933">{{ response }}</div>
-      {% endif %}
       <form class="form-horizontal" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -82,9 +79,17 @@
 
           </div>
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div id="upload" class="document" style="background: url(files/images/logo-orange.png) center top 150px no-repeat">
-              Enviar imagem
-            </div>
+            {% if document.image %}
+              <div id="upload" class="document" style="padding: 0; background: transparent url(/files/uploads/{{ document.image }}) center/cover no-repeat">
+                <div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(/files/images/logo-orange.png) center top 150px no-repeat">
+                  Editar imagem
+                </div>
+              </div>
+            {% else %}
+              <div id="upload" class="document" style="background: url(/files/images/logo-orange.png) center top 150px no-repeat">
+                Enviar imagem
+              </div>
+            {% endif %}
             <input type="file" name="image" accept="image/*" style="display: none">
           </div>
         </div>
@@ -186,7 +191,7 @@
                 background: 'transparent url(' + e.target.result + ') center/cover no-repeat',
                 padding: 0
               });
-              $('#upload').html('<div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(files/images/logo-orange.png) center top 150px no-repeat">Editar imagem</div>');
+              $('#upload').html('<div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(/files/images/logo-orange.png) center top 150px no-repeat">Editar imagem</div>');
             };
             reader.readAsDataURL(file);
           }

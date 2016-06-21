@@ -82,7 +82,7 @@
 
           </div>
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div id="upload" class="document" style="background: url(files/images/logo-orange.png) center top 150px no-repeat">
+            <div id="upload" class="document" style="background: url(/files/images/logo-orange.png) center top 150px no-repeat">
               Enviar imagem
             </div>
             <input type="file" name="image" accept="image/*" style="display: none">
@@ -184,7 +184,7 @@
                 background: 'transparent url(' + e.target.result + ') center/cover no-repeat',
                 padding: 0
               });
-              $('#upload').html('<div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(files/images/logo-orange.png) center top 150px no-repeat">Editar imagem</div>');
+              $('#upload').html('<div class="document-inner" style="color: #ff9933; text-align: center; height: 350px; padding: 75px 25px; font-size: 14pt; cursor: pointer; background: rgba(0, 0, 0, .5) url(/files/images/logo-orange.png) center top 150px no-repeat">Editar imagem</div>');
             };
             reader.readAsDataURL(file);
           }
