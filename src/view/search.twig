@@ -25,7 +25,7 @@
           <select name="type">
             <option value="">tipo de documento</option>
             <option value="1"{% if type == 1 %} selected{% endif %}>cópias</option>
-            <option value="2"{% if type == 2 %} selected{% endif %}>livros</option>
+            <option value="2"{% if type == 2 %} selected{% endif %}>cópias de livros</option>
             <option value="3"{% if type == 3 %} selected{% endif %}>resumos e anotações</option>
             <option value="4"{% if type == 4 %} selected{% endif %}>outros</option>
           </select>
@@ -48,7 +48,7 @@
                   “{{ document.title }}”
                   {% if document.author %}<br>por {{ document.author }}{% endif %}
                   {% if document.type_id == 1 %}<br>Cópia disponível para doação{% endif %}
-                  {% if document.type_id == 2 %}<br>Livro disponível para doação{% endif %}
+                  {% if document.type_id == 2 %}<br>Cópia de livro disponível para doação{% endif %}
                   {% if document.type_id == 3 %}<br>Resumo/Anotação disponível para doação{% endif %}
                 </div>
               </div>
