@@ -1,0 +1,31 @@
+{% extends "layout/logged.twig" %}
+
+{% block page %}
+
+  <section class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 class="panel-title" style="font-size: 16pt">
+        <img src="{{ path('file', {file: 'images/icon-share.png'}) }}">
+        {% if userLogged.id == id %}
+          Minha biblioteca
+        {% else %}
+          Biblioteca de {{ user.first_name }}
+        {% endif %}
+      </h1>
+    </div>
+    <div class="panel-body">
+      {% if userLogged.id == id %}
+        <div>{{ user.first_name }} {{ user.last_name }}</div>
+        <div><img src="{{ user.picture }}" class="img-circle"></div>
+        <div>Curso: {{ user.course_id }} - {{user.institution_id }}</div>
+        <div>Cidade: {{user.city_id}}</div>
+      {% else %}
+        <h4>Página em desenvolvimento ...</h4>
+        <div>{{ user.first_name }} {{ user.last_name }}</div>
+        <div><img src="{{ user.picture }}" class="img-circle"></div>
+        <div><a href="https://facebook.com/{{ user.id }}" target="_blank">Converse com {{ user.first_name }} no Facebook</a></div>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}

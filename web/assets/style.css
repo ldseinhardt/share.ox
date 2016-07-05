@@ -22,7 +22,7 @@ body {
   margin-right: 10px;
 }
 
-.navbar a.menu-profile:before {
+.navbar a.menu-library:before {
     content: "";
     display: block;
     background: transparent url(/files/images/icon-profile.png) center/25px no-repeat;

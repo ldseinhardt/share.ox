@@ -39,10 +39,10 @@ INSERT INTO `cities` (`id`, `state_id`, `name`) VALUES
   (2, 21, 'Porto Alegre'),
   (3, 21, 'Rio Grande');
 
-INSERT INTO `institutions` (`id`, `name`) VALUES
-  (1, 'Universidade Federal de Pelotas (UFPel)'),
-  (2, 'Universidade Católica de Pelotas (UCPel)'),
-  (3, 'Campus Pelotas do Instituto Federal Sul-rio-grandense (IFSul)');
+INSERT INTO `institutions` (`id`, `name`, `shortname`) VALUES
+  (1, 'Universidade Federal de Pelotas', 'UFPel'),
+  (2, 'Universidade Católica de Pelotas', 'UCPel'),
+  (3, 'Campus Pelotas do Instituto Federal Sul-rio-grandense', 'IFSul');
 
 INSERT INTO `courses` (`id`, `name`) VALUES
   (1, 'Ciência da Computação'),
@@ -51,7 +51,7 @@ INSERT INTO `courses` (`id`, `name`) VALUES
 
 INSERT INTO `types` (`id`, `type`) VALUES
   (1, 'cópia'),
-  (2, 'livro'),
+  (2, 'cópias de livros'),
   (3, 'resumo/anotação');
 
 INSERT INTO `categories` (`id`, `category`) VALUES

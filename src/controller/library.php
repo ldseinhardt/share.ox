@@ -1,7 +1,7 @@
 <?php
   use Symfony\Component\HttpFoundation\Request;
 
-  $app->get('/profile/{id}/', function($id, Request $request) use($app, $userLogged) {
+  $app->get('/library/{id}/', function($id, Request $request) use($app, $userLogged) {
     if (!$userLogged) {
       return $app->redirect('/login/');
     }
@@ -19,10 +19,12 @@
       return $app->redirect('/');
     }
 
-    return $app['twig']->render('profile.twig', [
-      'page' => 'profile',
+    return $app['twig']->render('library.twig', [
+      'page' => ($userLogged->id == $id) ? 'my_library' : 'library',
       'userLogged' => $userLogged,
-      'user' => $user
+      'user' => $user,
+      'id' => $id
     ]);
   })
-    ->bind('profile');
+    ->value('id', $userLogged->id)
+    ->bind('library');

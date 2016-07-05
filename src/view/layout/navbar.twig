@@ -15,7 +15,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li{% if page == 'my_profile' %} class="active"{% endif %}><a href="{{ path('my_profile') }}" class="menu-profile">minha biblioteca</a></li>
+        <li{% if page == 'my_library' %} class="active"{% endif %}><a href="{{ path('library') }}" class="menu-library">minha biblioteca</a></li>
         <li{% if page == 'notifications' %} class="active"{% endif %}><a href="{{ path('notifications') }}" class="menu-notifications">notificações</a></li>
         <li{% if page == 'doc_add' %} class="active"{% endif %}><a href="{{ path('doc_add') }}" class="menu-share">compartilhar</a></li>
         <li><a href="javascript:void(0)" id="facebook-logout">sair</a></li>

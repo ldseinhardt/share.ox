@@ -10,17 +10,16 @@
     </div>
     <div class="panel-body">
       <form class="form-horizontal" method="post" enctype="multipart/form-data">
-
-        <div class="form-group">
-          <label for="title" class="col-sm-3">Título <span class="orange">*</span>:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="title" class="left">Título <span class="orange">*</span>:</label>
+          <div class="right">
             <input type="text" id="title" name="title" maxlength="128" value="{{ document.title }}" required autofucus>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="type_id" class="col-sm-3">Tipo de documento <span class="orange">*</span>:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="type_id" class="left">Tipo de documento <span class="orange">*</span>:</label>
+          <div class="right">
             <input type="radio" id="type_id" name="type_id" value="1"{% if document.type_id == 1 %} checked{% endif %}> cópia
             <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> cópia de livro
             <input type="radio" id="type_id" name="type_id" value="3"{% if document.type_id == 3 %} checked{% endif %}> resumo/anotação
@@ -29,31 +28,31 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="author" class="col-sm-3">Autor:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="author" class="left">Autor:</label>
+          <div class="right">
             <input type="text" id="author" name="author" value="{{ document.author }}" maxlength="64">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="status_id" class="col-sm-3">Estado de conservação:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="status_id" class="left">Estado de conservação:</label>
+          <div class="right">
             <input type="radio" id="status_id" name="status_id" value="1"{% if document.status_id == 1 %} checked{% endif %}> novo
             <input type="radio" id="status_id" name="status_id" value="2"{% if document.status_id == 2 %} checked{% endif %}> usado
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="year" class="col-sm-3">Ano de publicação:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="year" class="left">Ano de publicação:</label>
+          <div class="right">
             <input type="number" id="year" name="year" value="{{ document.year }}" min="1901" max="2017">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="publisher" class="col-sm-3">Editora:</label>
-          <div class="col-sm-9">
+        <div class="form-g">
+          <label for="publisher" class="left">Editora:</label>
+          <div class="right">
             <input type="text" id="publisher" name="publisher" value="{{ document.publisher }}" maxlength="64">
           </div>
         </div>
@@ -61,20 +60,18 @@
         <div class="row">
           <div class="col-sm-6 col-md-8 col-lg-9">
 
-            <div class="form-group">
-              <label for="categories" class="col-sm-4">Outros:</label>
-              <div class="col-sm-8">
+            <div style="margin: 0 5px; margin-bottom: 20px; clear: both;">
+              <label for="categories" class="left">Outros:</label>
+              <div class="right">
                 <input type="checkbox" id="categories" name="categories[]" value="1"{% if 1 in categories %} checked{% endif %}> grifado
                 <input type="checkbox" id="categories" name="categories[]" value="2"{% if 2 in categories %} checked{% endif %}> com anotações
                 <input type="checkbox" id="categories" name="categories[]" value="3"{% if 3 in categories %} checked{% endif %}> dobras/amassado/orelhas
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="description" class="col-sm-4">Informações adicionais:</label>
-              <div class="col-sm-11 col-sm-offset-1">
-                <textarea name="description" id="description" maxlength="512">{{ document.description }}</textarea>
-              </div>
+            <div class="form-g">
+              <label for="description">Informações adicionais:</label>
+              <textarea name="description" id="description" maxlength="512">{{ document.description }}</textarea>
             </div>
 
           </div>
@@ -94,13 +91,10 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="col-sm-11 col-sm-offset-1">
-            <h4 class="orange">* O preenchimento das informações é obrigatório</h4>
-            <button class="btn btn-raised btn-primary">Salvar</button>
-          </div>
+        <div class="form-g">
+          <h4 class="orange">* O preenchimento das informações é obrigatório</h4>
+          <button class="btn btn-raised btn-primary">Salvar</button>
         </div>
-
       </form>
       <hr style="width: 90%">
       <div class="fb-comments" data-href="{{ url('doc_view', {id: document.id}) }}" data-width="100%" data-numposts="10"></div>
@@ -114,12 +108,35 @@
   {{ parent() }}
 
   <style>
+    .form-g {
+      margin: 20px 5px;
+      clear: both;
+    }
+
+    .left {
+      float: left;
+      font-size: 14pt;
+      color: #404040 !important;
+    }
+
+    .right {
+      overflow: hidden;
+      display: block;
+      padding: 0 4px 0 10px
+    }
+
+    .right input[type=text],
+    .right input[type=number] {
+      width: 100%
+    }
+
     label {
       font-size: 14pt;
       color: #404040 !important;
     }
 
-    section [type=text], section [type=number] {
+    section [type=text],
+    section [type=number] {
       border-radius: 15px;
       width: 100%;
       border: 1px solid #404040;
@@ -134,7 +151,7 @@
 
     section textarea {
       width: 100%;
-      height: 240px;
+      height: 285px;
       border: 1px solid #404040;
       border-radius: 15px;
       background: transparent;

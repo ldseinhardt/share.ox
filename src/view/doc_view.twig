@@ -52,9 +52,9 @@
             <br>
             <h4 class="orange">
               {% if userLogged and document.user_id == userLogged.id %}
-                <a href="{{ path('my_profile') }}">Ver a minha biblioteca</a>
+                <a href="{{ path('library') }}">Ver a minha biblioteca</a>
               {% else %}
-                <a href="{{ path('profile', {id: document.user_id}) }}">Veja a biblioteca de {{ document.user_first_name }}</a>
+                <a href="{{ path('library', {id: document.user_id}) }}">Veja a biblioteca de {{ document.user_first_name }}</a>
               {% endif %}
             </h4>
             <br>

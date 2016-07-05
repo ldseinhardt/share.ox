@@ -19,8 +19,6 @@
     $type_other = $app->escape($request->get('type_other'));
     $categories = $request->get('categories');
 
-    $response = NULL;
-
     if ($request->isMethod('POST')) {
       $image = $request->files->get('image');
 
@@ -79,13 +77,7 @@
         }
       }
 
-      $response = $app->redirect('/doc/' . $document_id . '/');
-
-      $document = array_map(function($e) {
-        return '';
-      }, $document);
-      $type_other = '';
-      $categories = [];
+      return $app->redirect('/doc/' . $document_id . '/');
     }
 
     return $app['twig']->render('doc_add.twig', [
@@ -93,8 +85,7 @@
       'userLogged' => $userLogged,
       'document' => $document,
       'type_other' => $type_other,
-      'categories' => $categories,
-      'response' => $response
+      'categories' => $categories
     ]);
   }, 'GET|POST')
     ->bind('doc_add');

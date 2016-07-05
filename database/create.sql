@@ -34,9 +34,10 @@ CREATE TABLE IF NOT EXISTS `cities` (
 
 -- Tabela de instituições de ensino
 CREATE TABLE IF NOT EXISTS `institutions` (
-  `id`      INT          NOT NULL AUTO_INCREMENT,
-  `name`    VARCHAR(128) NOT NULL,
-  `city_id` INT          NULL,
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `name`      VARCHAR(128) NOT NULL,
+  `shortname` VARCHAR(16)  NOT NULL,
+  `city_id`   INT          NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -80,21 +81,21 @@ CREATE TABLE IF NOT EXISTS `types` (
   `type`        VARCHAR(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
+
 -- Tabela de categorias de documentos
 CREATE TABLE IF NOT EXISTS `categories` (
   `id`          INT         NOT NULL AUTO_INCREMENT,
   `category`    VARCHAR(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
+
 -- Tabela de estados de conservação para documentos
 CREATE TABLE IF NOT EXISTS `status` (
   `id`          INT         NOT NULL AUTO_INCREMENT,
   `status`      VARCHAR(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
+
 -- Tabela de documentos
 CREATE TABLE IF NOT EXISTS `documents` (
   `id`          INT             NOT NULL AUTO_INCREMENT,
