@@ -79,7 +79,7 @@
         }
       }
 
-      $response = 'Seu documento foi compartilhado com sucesso!';
+      $response = $app->redirect('/doc/' . $document_id . '/');
 
       $document = array_map(function($e) {
         return '';
