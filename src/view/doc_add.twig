@@ -15,14 +15,14 @@
       <form class="form-horizontal" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-          <label for="title" class="col-sm-3">Título <span class="orange">*</span>:</label>
+          <label for="title" class="col-sm-3 pull-left">Título <span class="orange">*</span>:</label>
           <div class="col-sm-9">
             <input type="text" id="title" name="title" maxlength="128" value="{{ document.title }}" required autofucus>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="type_id" class="col-sm-3">Tipo de documento <span class="orange">*</span>:</label>
+          <label for="type_id" class="col-sm-3 pull-left">Tipo de documento <span class="orange">*</span>:</label>
           <div class="col-sm-9">
             <input type="radio" id="type_id" name="type_id" value="1"{% if document.type_id == 1 %} checked{% endif %}> cópia
             <input type="radio" id="type_id" name="type_id" value="2"{% if document.type_id == 2 %} checked{% endif %}> cópia de livro
@@ -33,14 +33,14 @@
         </div>
 
         <div class="form-group">
-          <label for="author" class="col-sm-3">Autor:</label>
+          <label for="author" class="col-sm-3 pull-left">Autor:</label>
           <div class="col-sm-9">
             <input type="text" id="author" name="author" value="{{ document.author }}" maxlength="64">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="status_id" class="col-sm-3">Estado de conservação:</label>
+          <label for="status_id" class="col-sm-3 pull-left">Estado de conservação:</label>
           <div class="col-sm-9">
             <input type="radio" id="status_id" name="status_id" value="1"{% if document.status_id == 1 %} checked{% endif %}> novo
             <input type="radio" id="status_id" name="status_id" value="2"{% if document.status_id == 2 %} checked{% endif %}> usado
@@ -48,14 +48,14 @@
         </div>
 
         <div class="form-group">
-          <label for="year" class="col-sm-3">Ano de publicação:</label>
+          <label for="year" class="col-sm-3 pull-left">Ano de publicação:</label>
           <div class="col-sm-9">
             <input type="number" id="year" name="year" value="{{ document.year }}" min="1901" max="2017">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="publisher" class="col-sm-3">Editora:</label>
+          <label for="publisher" class="col-sm-3 pull-left">Editora:</label>
           <div class="col-sm-9">
             <input type="text" id="publisher" name="publisher" value="{{ document.publisher }}" maxlength="64">
           </div>
