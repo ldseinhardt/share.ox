@@ -79,7 +79,7 @@
         }
       }
 
-      $response = 'Seu documento foi compartilhado com sucesso!!!';
+      $response = 'Seu documento foi compartilhado com sucesso!';
 
       $document = array_map(function($e) {
         return '';
