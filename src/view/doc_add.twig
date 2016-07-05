@@ -65,7 +65,7 @@
           <div class="col-sm-6 col-md-8 col-lg-9">
 
             <div class="form-group">
-              <label for="categories" class="col-sm-4">Outros:</label>
+              <label for="categories" class="col-sm-4 pull-left">Outros:</label>
               <div class="col-sm-8">
                 <input type="checkbox" id="categories" name="categories[]" value="1"{% if 1 in categories %} checked{% endif %}> grifado
                 <input type="checkbox" id="categories" name="categories[]" value="2"{% if 2 in categories %} checked{% endif %}> com anotações
@@ -74,7 +74,7 @@
             </div>
 
             <div class="form-group">
-              <label for="description" class="col-sm-4">Informações adicionais:</label>
+              <label for="description" class="col-sm-4 pull-left">Informações adicionais:</label>
               <div class="col-sm-11 col-sm-offset-1">
                 <textarea name="description" id="description" maxlength="512">{{ document.description }}</textarea>
               </div>
